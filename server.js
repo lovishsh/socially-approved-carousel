@@ -6,11 +6,23 @@ const videoRoutes = require("./routes/videoRoutes");
 
 const app = express();
 
-const allowedOrigins = "http://localhost:5173"
-  .split(",")
-  .map((o) => o.trim());
+const allowedOrigins = [
+  "http://localhost:5173",
+  process.env.CLIENT_ORIGIN
+];
 
-app.use(cors({ origin: allowedOrigins }));
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 app.get("/", (req, res) => {
