@@ -477,6 +477,25 @@ button:focus-visible {
 .sa-slide__action.is-active {
   color: var(--accent-like);
 }
+.sa-slide__action {
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+
+  padding: 6px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.sa-slide__action:hover {
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.06);
+}
 
 .sa-slide__shareWrap {
   position: relative;
